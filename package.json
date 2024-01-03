@@ -1,0 +1,16 @@
+{
+  "name": "jpg-to-pdf",
+  "version": "1.0.0",
+  "description": "Convert multiple image-files into one pdf-file",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "pdfkit": "^0.14.0"
+  }
+}
