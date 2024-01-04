@@ -11,12 +11,11 @@ function createPdfFromImages(
     });
     pdf.pipe(createWriteStream(outputFileName ? `${outputFileName}.pdf` : 'out.pdf'));
     images.forEach((image) => {
-        var openedImage = pdf.openImage(image);
-        pdf.addPage(getPageSize(pageSizeFormat, openedImage))
-            .image(openedImage, 0, 0);
+        let openedImage = pdf.openImage(image);
+        pdf.addPage(getPageSize(pageSizeFormat, openedImage));
+        pdf.image(openedImage, 0, 0, getImageOptions(openedImage, pdf.page, pageSizeFormat));
     });
     pdf.end();
-
 }
 
 function getPageSize(format, openedImage) {
@@ -25,6 +24,14 @@ function getPageSize(format, openedImage) {
     }
 
     return { size: [openedImage.width, openedImage.height] };
+}
+
+function getImageOptions(openedImage, page, format) {
+    if (!format) {
+        return {};
+    }
+
+    return {scale : Math.min(page.width / openedImage.width, page.height / openedImage.height)};
 }
 
 module.exports = { createPdfFromImages };
