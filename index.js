@@ -26,24 +26,31 @@ const availableSizes = new Set([
 
 ]);
 const format = program.opts().format ? program.opts().format.toUpperCase() : null;
+
 if (format && !availableSizes.has(format)) {
-    console.log('Invalid format')
+    console.log('Invalid format');
     console.log('Check available formats: ' + JSON.stringify([...availableSizes]));
     process.exit(1);
 }
 
+console.log(format ? `Use '${format}', for each page` : 'Use default resolution of each image for each page');
+
 let outputFileName = program.args[1] ? program.args[1] : 'output';
 
 outputFileName = outputFileName.replace(pdfRegex, '');
-console.log(`outputFileName = ${outputFileName}`)
+console.log(`Get files in dir '${pathToDir}'`);
 
 const images = getImageFiles(pathToDir);
+console.log('Done');
 
 if (images.length === 0) {
     console.log(`No images in dir: '${pathToDir}'`);
     process.exit(0);
 }
 
+console.log('Total images: ' + images.length);
+console.log(`Create pdf-file: '${outputFileName}'`);
+
 createPdfFromImages(images, outputFileName, format);
 
-console.log('Total images: ' + images.length);
+console.log('Done');
