@@ -10,15 +10,22 @@ Ensure you have [Node.js](https://nodejs.org/en/) installed on your machine.
 
 1. Download or clone the project to a suitable directory.
 2. Open the directory and run the setup script as an administrator:
-    - For Windows: `setup.bat`
-    - For Linux and Mac OS: `setup.sh`
+```shell
+npm run setup
+```
 
 ## Usage
 
 Navigate to any directory in your terminal and run the following command:
 
+for linux and MacOS
 ```shell
 jpg-to-pdf --help
+```
+
+or for Windows
+```cmd
+jpg-to-pdf.cmd --help
 ```
 
 ### Supported Page Formats
